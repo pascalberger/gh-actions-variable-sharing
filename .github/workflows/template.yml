@@ -1,0 +1,21 @@
+name: template-build
+
+on:
+  workflow_call:
+
+jobs:
+  template-build:
+    runs-on: ubuntu-latest
+
+    # Map a step output to a job output
+    outputs:
+      fullSemVer: ${{ steps.cake.outputs.FullSemVer }}
+
+    steps:
+      - name: Get the sources
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Run Cake script
+        id: cake
+        uses: cake-build/cake-action@5167c3f6a9e15c76f009de2acdfb9488552bc0b9 # v3
+        with:
+          project-path: build/Build.csproj
