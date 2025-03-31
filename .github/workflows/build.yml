@@ -25,3 +25,6 @@ jobs:
       - env:
           FULL_SEMVER: ${{needs.job1.outputs.fullSemVer}}
         run: echo "$FULL_SEMVER"
+      - env:
+          FULL_SEMVER: ${{needs.template-build.outputs.fullSemVer}}
+        run: echo "$FULL_SEMVER"

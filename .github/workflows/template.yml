@@ -2,12 +2,17 @@ name: template-build
 
 on:
   workflow_call:
+    # Map the job outputs to workflow outputs
+    outputs:
+      fullSemVer: 
+        description: "The full semantic version"
+        value: ${{ jobs.template-build.outputs.fullSemVer }}
 
 jobs:
   template-build:
     runs-on: ubuntu-latest
 
-    # Map a step output to a job output
+    # Map step output to a job output
     outputs:
       fullSemVer: ${{ steps.cake.outputs.FullSemVer }}
 
